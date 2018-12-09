@@ -9,14 +9,14 @@ script:
   - docker run franciscojaviermartin/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t franciscojaviermartin/multi-client ./client
-  - docker build -t franciscojaviermartin/multi-nginx ./nginx
-  - docker build -t franciscojaviermartin/multi-server ./server
-  - docker build -t franciscojaviermartin/multi-worker ./worker
+  - docker build -t azurerathalos/multi-client ./client
+  - docker build -t azurerathalos/multi-nginx ./nginx
+  - docker build -t azurerathalos/multi-server ./server
+  - docker build -t azurerathalos/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push franciscojaviermartin/multi-client
-  - docker push franciscojaviermartin/multi-nginx
-  - docker push franciscojaviermartin/multi-server
-  - docker push franciscojaviermartin/multi-worker
+  - docker push azurerathalos/multi-client
+  - docker push azurerathalos/multi-nginx
+  - docker push azurerathalos/multi-server
+  - docker push azurerathalos/multi-worker
