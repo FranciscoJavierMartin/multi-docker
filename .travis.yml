@@ -9,6 +9,7 @@ script:
   - docker run franciscojaviermartin/react-test npm test -- --coverage
 
 after_success:
+  # The image name must be docker_id/tag where docker_id, it's your docker ID on docker hub
   - docker build -t azurerathalos/multi-client ./client
   - docker build -t azurerathalos/multi-nginx ./nginx
   - docker build -t azurerathalos/multi-server ./server
@@ -20,3 +21,17 @@ after_success:
   - docker push azurerathalos/multi-nginx
   - docker push azurerathalos/multi-server
   - docker push azurerathalos/multi-worker
+
+
+#deploy:
+#  provider: elasticbeanstalk
+#  region: us-west-1
+#  app: multi-docker
+#  env: MultiDocker-env
+#  bucket_name: elasticbeanstalk-us-west-1-306476627547
+#  bucket_path: docker-multi
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key:
+#    secure: $AWS_SECRET_KEY
